@@ -1,16 +1,7 @@
-'use client'
+import AppContent from '@/components/content/AppContent'
 
-import { theme } from 'antd'
-
-const Home = () => {
-  const {
-    token: { colorBgContainer, borderRadiusLG }
-  } = theme.useToken()
-  return (
-    <div className="content" style={{ background: colorBgContainer, borderRadius: borderRadiusLG }}>
-      Tiendas
-    </div>
-  )
+const HomePage = () => {
+  return <AppContent>Tiendas</AppContent>
 }
 
-export default Home
+export default HomePage

@@ -1,16 +1,7 @@
-'use client'
-
-import { theme } from 'antd'
+import AppContent from '@/components/content/AppContent'
 
 const Product = () => {
-  const {
-    token: { colorBgContainer, borderRadiusLG }
-  } = theme.useToken()
-  return (
-    <div className="content" style={{ background: colorBgContainer, borderRadius: borderRadiusLG }}>
-      Producto
-    </div>
-  )
+  return <AppContent>Producto</AppContent>
 }
 
 export default Product

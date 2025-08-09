@@ -1,13 +1,13 @@
-export interface RegisterFormValues {
+export interface IRegisterFormValues {
   firstName?: string
   lastName?: string
   businessName?: string
-  userType: 'client' | 'business'
+  userType: 'CLIENT' | 'BUSINESS'
   email: string
   password: string
 }
 
-export interface LoginFormValues {
+export interface ILoginFormValues {
   email: string
   password: string
 }
