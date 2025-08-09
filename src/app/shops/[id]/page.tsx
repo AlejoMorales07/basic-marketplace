@@ -2,15 +2,15 @@
 
 import { theme } from 'antd'
 
-const Home = () => {
+const Product = () => {
   const {
     token: { colorBgContainer, borderRadiusLG }
   } = theme.useToken()
   return (
     <div className="content" style={{ background: colorBgContainer, borderRadius: borderRadiusLG }}>
-      Tiendas
+      Producto
     </div>
   )
 }
 
-export default Home
+export default Product
