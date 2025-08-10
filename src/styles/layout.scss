@@ -3,7 +3,6 @@
   .header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     .logo {
       width: 120px;
       min-width: 120px;
@@ -12,7 +11,9 @@
       margin-inline-end: 24px;
     }
     .menu {
+      flex: 1;
       display: flex;
+      justify-content: flex-end;
       min-width: 0;
     }
   }

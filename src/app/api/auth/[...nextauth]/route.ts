@@ -1,9 +1,9 @@
 import prisma from '@/lib/prisma'
 import bcrypt from 'bcrypt'
-import NextAuth from 'next-auth'
+import NextAuth, { AuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
-const authOptions = {
+export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -24,12 +24,38 @@ const authOptions = {
         const isValid = await bcrypt.compare(password, user.password)
         if (!isValid) throw new Error('Credenciales inválidas')
 
-        const { password: _, ...userData } = user
-
-        return { ...userData }
+        const userData = {
+          id: user.id,
+          email: user.email,
+          name: `${user.userType === 'CLIENT' ? user.firstName + ' ' + user.lastName : user.businessName}`,
+          userType: user.userType
+        }
+        return userData
       }
     })
   ],
+  callbacks: {
+    jwt: async ({ token, user }) => {
+      if (user) {
+        token.id = user.id
+        token.email = user.email
+        token.name = user.name
+        token.userType = user.userType
+      }
+      return token
+    },
+    session: ({ session, token }) => {
+      if (token) {
+        session.user = {
+          id: token.id,
+          email: token.email,
+          name: token.name,
+          userType: token.userType
+        }
+      }
+      return session
+    }
+  },
   pages: {
     signIn: '/auth/login'
   }
