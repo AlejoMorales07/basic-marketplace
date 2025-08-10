@@ -24,12 +24,15 @@ const authOptions = {
         const isValid = await bcrypt.compare(password, user.password)
         if (!isValid) throw new Error('Credenciales inválidas')
 
-        const { password: _, createdAt: __, updatedAt: ___, ...userData } = user
+        const { password: _, ...userData } = user
 
         return { ...userData }
       }
     })
-  ]
+  ],
+  pages: {
+    signIn: '/auth/login'
+  }
 }
 
 const handler = NextAuth(authOptions)

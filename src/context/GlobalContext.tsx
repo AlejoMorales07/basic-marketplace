@@ -8,6 +8,7 @@ interface IProps {
 }
 
 const GlobalContext = ({ children }: IProps) => {
+  return <>{children}</>
   return <SessionProvider>{children}</SessionProvider>
 }
 

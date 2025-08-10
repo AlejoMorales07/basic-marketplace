@@ -1,11 +1,19 @@
 'use client'
 
 import { ILoginFormValues } from '@/interfaces/auth.interface'
-import { Button, Form, Input } from 'antd'
+import { loginService } from '@/services/auth.service'
+import { Button, Form, Input, message } from 'antd'
+import { useRouter } from 'next/navigation'
 
 const FormLogin = () => {
-  const onSubmit = (data: ILoginFormValues) => {
-    console.log(data)
+  const router = useRouter()
+  const onSubmit = async (data: ILoginFormValues) => {
+    try {
+      await loginService(data)
+      router.push('/')
+    } catch (error) {
+      message.error(error instanceof Error ? error.message : String(error))
+    }
   }
   return (
     <Form<ILoginFormValues> onFinish={onSubmit} layout="vertical" className="form">

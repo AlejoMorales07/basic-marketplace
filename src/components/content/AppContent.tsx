@@ -11,7 +11,6 @@ interface IProps {
 }
 
 const AppContent = ({ children, className, content = true, title }: IProps) => {
-  console.log(content)
   const {
     token: { colorBgContainer, borderRadiusLG }
   } = theme.useToken()

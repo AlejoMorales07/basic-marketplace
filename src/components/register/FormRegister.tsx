@@ -19,7 +19,6 @@ const FormRegister = () => {
   const onSubmit = async (data: IRegisterFormValues) => {
     try {
       const result = await registerService(data)
-      console.log(result)
       message.success(result.message)
       router.push('/auth/login')
     } catch (error) {
