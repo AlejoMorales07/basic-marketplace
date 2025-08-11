@@ -3,7 +3,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  .shop-empty {
+  .shop-empty,
+  .product-empty {
     width: 100%;
   }
   .shop-card,

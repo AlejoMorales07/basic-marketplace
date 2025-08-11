@@ -3,7 +3,7 @@
 import { IProduct } from '@/interfaces/product.interface'
 import { Button, Card } from 'antd'
 import { useSession } from 'next-auth/react'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { ReactNode, useMemo } from 'react'
 
 interface IProps {
@@ -12,13 +12,19 @@ interface IProps {
   onBuy?: (product: IProduct) => Promise<void>
 }
 
-const ProductCard = ({ product, onDelete }: IProps) => {
+const ProductCard = ({ product, onDelete, onBuy }: IProps) => {
   const { data: session } = useSession()
   const pathname = usePathname()
+  const router = useRouter()
 
   const baseActions: ReactNode[] = useMemo(
     () => [
-      <Button key="buy" type="link" disabled={session && session.user?.userType === 'BUSINESS' ? true : false} onClick={() => {}}>
+      <Button
+        key="buy"
+        type="link"
+        disabled={session && session.user?.userType === 'BUSINESS' ? true : false}
+        onClick={() => (session && onBuy ? onBuy(product) : router.push('/auth/login'))}
+      >
         Comprar
       </Button>
     ],

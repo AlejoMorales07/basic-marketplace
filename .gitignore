@@ -41,7 +41,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-
-# vs
+# ide
 .vscode/    
 /src/generated/prisma
+
+#docker
+docker-compose.yml
