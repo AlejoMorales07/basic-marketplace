@@ -7,7 +7,7 @@ import ProductCard from './ProductCard'
 interface IProps {
   products: IProduct[]
   onDelete?: (product: IProduct) => Promise<void>
-  onBuy?: (values: any) => Promise<void>
+  onBuy?: (product: IProduct) => Promise<void>
 }
 
 const ProductList = ({ products, onDelete, onBuy }: IProps) => {

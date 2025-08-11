@@ -30,9 +30,9 @@ const PublicProducts = () => {
     }
   }
 
-  const onBuy = async (values: any) => {
+  const onBuy = async (product: IProduct) => {
     try {
-      const res = await createOrder(values.id)
+      const res = await createOrder(product.id)
       message.success(res.message)
     } catch (error) {
       message.error(error instanceof Error ? error.message : String(error))

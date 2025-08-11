@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Proyecto Basic Marketplace
 
-## Getting Started
+Este proyecto utiliza **Next.js** como framework frontend/backend, **Prisma** como ORM y **PostgreSQL** como base de datos.
+Se ejecuta **en modo producción**, sin usuarios de prueba ni datos falsos.
 
-First, run the development server:
+---
+
+## 📋 Requisitos previos
+
+- [Node.js 18+](https://nodejs.org/en/)
+- [PostgreSQL 14+](https://www.postgresql.org/)
+
+---
+
+## ⚙️ Configuración
+
+### 1. Clonar el repositorio
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/AlejoMorales07/basic-marketplace.git
+cd basic-marketplace
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Crear archivo `.env` (para producción)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cp .env.example .env
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Configura las variables con credenciales y dominio reales:
 
-## Learn More
+```env
+DATABASE_URL="postgresql://usuario:password@ip_o_dominio:5432/nombre_db?schema=public"
+NEXTAUTH_URL=https://tu-dominio.com
+NEXTAUTH_SECRET=un_secret_seguro
+NODE_ENV=production
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 💻 Ejecución
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1️⃣ Instalar dependencias:
 
-## Deploy on Vercel
+```bash
+npm install
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2️⃣ Construir la aplicación:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build
+```
+
+3️⃣ Aplicar migraciones de producción:
+
+```bash
+npx prisma migrate deploy
+```
+
+4️⃣ Iniciar el servidor:
+
+```bash
+npm start
+```

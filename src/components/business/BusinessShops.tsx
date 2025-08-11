@@ -1,7 +1,7 @@
 'use client'
 
 import { GlobalAppContext } from '@/context/GlobalContext'
-import { IShop } from '@/interfaces/shop.interface'
+import { IShop, IShopFormValues } from '@/interfaces/shop.interface'
 import { createShop, deleteShop, getBusinessShops } from '@/services/shop.service'
 import { Form, message, Typography } from 'antd'
 import { useContext, useEffect, useState } from 'react'
@@ -29,7 +29,7 @@ const BusinessShops = () => {
     }
   }
 
-  const onSubmit = async (values: { name: string; description: string }) => {
+  const onSubmit = async (values: IShopFormValues) => {
     try {
       const res = await createShop(values)
       message.success(res.message)

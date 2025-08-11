@@ -4,3 +4,8 @@ export interface IShop {
   description: string
   ownerId: string
 }
+
+export interface IShopFormValues {
+  name: string
+  description: string
+}

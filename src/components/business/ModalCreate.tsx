@@ -1,18 +1,20 @@
 'use client'
 
+import { IProductFormValues } from '@/interfaces/product.interface'
+import { IShopFormValues } from '@/interfaces/shop.interface'
 import { Button, Form, FormInstance, Input, InputNumber, Modal } from 'antd'
 import { useState } from 'react'
 
-interface IProps {
+interface IProps<T extends 'shop' | 'product'> {
   form: FormInstance
-  type: 'shop' | 'product'
-  onSubmit: (values: any) => Promise<void>
+  type: T
+  onSubmit: (values: T extends 'shop' ? IShopFormValues : IProductFormValues) => Promise<void>
 }
 
-const ModalCreate = ({ form, type, onSubmit }: IProps) => {
+const ModalCreate = <T extends 'shop' | 'product'>({ form, type, onSubmit }: IProps<T>) => {
   const [open, setOpen] = useState(false)
 
-  const handleSubmit = async (values: any) => {
+  const handleSubmit = async (values: T extends 'shop' ? IShopFormValues : IProductFormValues) => {
     await onSubmit(values)
     onCancel()
   }

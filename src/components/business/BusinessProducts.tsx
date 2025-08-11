@@ -1,7 +1,7 @@
 'use client'
 
 import { GlobalAppContext } from '@/context/GlobalContext'
-import { IProduct } from '@/interfaces/product.interface'
+import { IProduct, IProductFormValues } from '@/interfaces/product.interface'
 import { createProduct, deleteProduct, getBusinessProducts } from '@/services/product.service'
 import { Form, message, Typography } from 'antd'
 import { useParams } from 'next/navigation'
@@ -31,7 +31,7 @@ const BusinessProducts = () => {
     }
   }
 
-  const onSubmit = async (values: any) => {
+  const onSubmit = async (values: IProductFormValues) => {
     try {
       const res = await createProduct({ data: { ...values, shopId: id as string } })
       message.success(res.message)
