@@ -1,0 +1,14 @@
+.shop-list,
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  .shop-empty {
+    width: 100%;
+  }
+  .shop-card,
+  .product-card {
+    margin-bottom: 16px;
+    width: 250px;
+  }
+}

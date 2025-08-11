@@ -1,10 +1,10 @@
 'use client'
 
 import { SessionProvider } from 'next-auth/react'
-import React from 'react'
+import { ReactNode } from 'react'
 
 interface IProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 const GlobalContext = ({ children }: IProps) => {

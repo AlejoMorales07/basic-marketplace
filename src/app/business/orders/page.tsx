@@ -1,7 +1,7 @@
 import AppContent from '@/components/content/AppContent'
 
-const OrdersPage = () => {
-  return <AppContent className="container-orders">Orders</AppContent>
+const ClientOrdersPage = () => {
+  return <AppContent className="orders-container">Orders</AppContent>
 }
 
-export default OrdersPage
+export default ClientOrdersPage

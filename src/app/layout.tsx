@@ -4,6 +4,7 @@ import themeConfig from '@/theme/themeConfig'
 import { AntdRegistry } from '@ant-design/nextjs-registry'
 import '@ant-design/v5-patch-for-react-19'
 import { ConfigProvider } from 'antd'
+import { ReactNode } from 'react'
 import '../styles/index.scss'
 
 export const metadata = {
@@ -14,7 +15,7 @@ export const metadata = {
 export default function RootLayout({
   children
 }: Readonly<{
-  children: React.ReactNode
+  children: ReactNode
 }>) {
   return (
     <html lang="es">

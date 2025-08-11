@@ -1,9 +1,9 @@
+import FormLogin from '@/components/auth/login/FormLogin'
 import AppContent from '@/components/content/AppContent'
-import FormLogin from '@/components/login/FormLogin'
 
 const LoginPage = () => {
   return (
-    <AppContent title="Inicio de Sesion" content={false} className="container-login">
+    <AppContent title="Inicio de Sesion" container={false} className="login-container">
       <FormLogin />
     </AppContent>
   )

@@ -18,9 +18,62 @@ model User {
   businessName String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  shops Shop[]
+  clientOrders Order[] @relation("ClientOrders")
+  businessOrders Order[] @relation("BusinessOrders")
 }
 
 enum UserType {
   CLIENT
   BUSINESS
+}
+
+model Shop {
+  id String @id @default(uuid())
+  name String
+  description String
+
+  ownerId String
+  owner User @relation(fields: [ownerId], references: [id])
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  products Product[]
+  orders Order[] 
+}
+
+model Product {
+  id String @id @default(uuid())
+  name String
+  description String
+  price Float
+  
+  shopId String
+  shop Shop @relation(fields: [shopId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  orders Order[]
+}
+
+model Order {
+  id String @id @default(uuid())
+  
+  clientId String
+  client User @relation("ClientOrders", fields: [clientId], references: [id])
+
+  productId String
+  product Product @relation(fields: [productId], references: [id])
+
+  shopId String
+  shop Shop @relation(fields: [shopId], references: [id])
+
+  businessId String
+  business User @relation("BusinessOrders", fields: [businessId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

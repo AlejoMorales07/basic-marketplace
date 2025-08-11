@@ -6,9 +6,9 @@ import { ItemType } from 'antd/es/menu/interface'
 import { signOut, useSession } from 'next-auth/react'
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
-import { useMemo } from 'react'
+import { ReactNode, useMemo } from 'react'
 
-const AppLayout = ({ children }: { children: React.ReactNode }) => {
+const AppLayout = ({ children }: { children: ReactNode }) => {
   const router = useRouter()
   const pathname = usePathname()
   const { data: session, status } = useSession()
@@ -78,7 +78,7 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
     [router]
   )
 
-  const items = useMemo(() => {
+  const items: ItemType[] = useMemo(() => {
     if (session?.user?.userType === 'CLIENT') {
       return [...baseMenu, ...clientMenu, ...sessionMenu]
     } else if (session?.user?.userType === 'BUSINESS') {

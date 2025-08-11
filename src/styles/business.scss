@@ -1,0 +1,15 @@
+.business-shops-container,
+.business-products-container {
+  .business-shops-header,
+  .business-products-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    .business-shops-title,
+    .business-products-title {
+      margin: 0;
+    }
+  }
+}

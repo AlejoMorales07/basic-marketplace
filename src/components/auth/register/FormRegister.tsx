@@ -9,12 +9,11 @@ import { useEffect, useState } from 'react'
 const FormRegister = () => {
   const [form] = Form.useForm()
   const router = useRouter()
-
   const [userType, setUserType] = useState<'BUSINESS' | 'CLIENT'>('CLIENT')
 
   useEffect(() => {
     form.setFieldsValue({ userType })
-  }, [userType])
+  }, [userType, form])
 
   const onSubmit = async (data: IRegisterFormValues) => {
     try {
@@ -22,7 +21,7 @@ const FormRegister = () => {
       message.success(result.message)
       router.push('/auth/login')
     } catch (error) {
-      error instanceof Error ? message.error(error.message) : message.error('Error al registrar el usuario')
+      message.error(error instanceof Error ? error.message : String(error))
     }
   }
   return (

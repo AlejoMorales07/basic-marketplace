@@ -1,7 +1,12 @@
 import AppContent from '@/components/content/AppContent'
+import PublicProducts from '@/components/public/PublicProducts'
 
-const Product = () => {
-  return <AppContent>Producto</AppContent>
+const Products = () => {
+  return (
+    <AppContent>
+      <PublicProducts />
+    </AppContent>
+  )
 }
 
-export default Product
+export default Products

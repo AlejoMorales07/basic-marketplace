@@ -16,8 +16,9 @@ export async function POST(request: NextRequest) {
 
     const { password, ...userWithoutPassword } = newUser
 
-    return NextResponse.json({ message: 'Usuario registrado con éxito', user: userWithoutPassword }, { status: 201 })
+    return NextResponse.json({ message: 'Usuario registrado con éxito', data: userWithoutPassword }, { status: 201 })
   } catch (error) {
+    console.error(error)
     return NextResponse.json({ message: 'Error al registrar el usuario' }, { status: 500 })
   }
 }

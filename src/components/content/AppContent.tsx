@@ -1,21 +1,22 @@
 'use client'
 
 import { theme, Typography } from 'antd'
-import React from 'react'
+import { ReactNode } from 'react'
 
 interface IProps {
   title?: string
-  content?: boolean
+  container?: boolean
   className?: string
-  children: React.ReactNode
+  children: ReactNode
 }
 
-const AppContent = ({ children, className, content = true, title }: IProps) => {
+const AppContent = ({ children, className, container = true, title }: IProps) => {
   const {
     token: { colorBgContainer, borderRadiusLG }
   } = theme.useToken()
+
   return (
-    <div className={`${content ? 'content' : ''} ${className}`} style={{ background: colorBgContainer, borderRadius: borderRadiusLG }}>
+    <div className={`${container ? 'container' : ''} ${className}`} style={{ background: colorBgContainer, borderRadius: borderRadiusLG }}>
       {title && (
         <Typography.Title level={1} className="title">
           {title}
