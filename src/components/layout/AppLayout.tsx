@@ -1,17 +1,19 @@
 'use client'
 
+import { GlobalAppContext } from '@/context/GlobalContext'
 import { Layout, Menu, Spin } from 'antd'
 import { Content, Header } from 'antd/es/layout/layout'
 import { ItemType } from 'antd/es/menu/interface'
 import { signOut, useSession } from 'next-auth/react'
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
-import { ReactNode, useMemo } from 'react'
+import { ReactNode, useContext, useMemo } from 'react'
 
 const AppLayout = ({ children }: { children: ReactNode }) => {
   const router = useRouter()
   const pathname = usePathname()
   const { data: session, status } = useSession()
+  const { loading } = useContext(GlobalAppContext)
 
   const baseMenu: ItemType[] = useMemo(
     () => [
@@ -87,17 +89,16 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
     return [...baseMenu, ...authMenu]
   }, [session, baseMenu, clientMenu, businessMenu, authMenu, sessionMenu])
 
-  if (status === 'loading') {
-    return <Spin fullscreen />
-  }
-
   return (
     <Layout className="layout">
       <Header className="header">
         <Image className="logo" src="/text-logo.png" alt="Logo" width={120} height={32} />
         <Menu className="menu" theme="dark" mode="horizontal" selectedKeys={[pathname]} items={items} />
       </Header>
-      <Content className="content">{children}</Content>
+      <Content className="content">
+        {children}
+        {status === 'loading' || loading === true ? <Spin fullscreen /> : null}
+      </Content>
     </Layout>
   )
 }

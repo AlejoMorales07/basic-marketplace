@@ -1,18 +1,19 @@
 'use client'
 
+import { GlobalAppContext } from '@/context/GlobalContext'
 import { IProduct } from '@/interfaces/product.interface'
 import { createProduct, deleteProduct, getBusinessProducts } from '@/services/product.service'
-import { Form, message, Spin, Typography } from 'antd'
+import { Form, message, Typography } from 'antd'
 import { useParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import ProductList from '../product/ProductList'
 import ModalCreate from './ModalCreate'
 
 const BusinessProducts = () => {
   const { id } = useParams()
   const [form] = Form.useForm()
+  const { setLoading } = useContext(GlobalAppContext)
   const [products, setProducts] = useState<IProduct[]>([])
-  const [loading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {
     getData()
@@ -51,8 +52,6 @@ const BusinessProducts = () => {
       getData()
     }
   }
-
-  if (loading) return <Spin fullscreen />
 
   return (
     <>

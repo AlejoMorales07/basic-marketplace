@@ -1,7 +1,12 @@
+import ClientOrders from '@/components/client/ClientOrders'
 import AppContent from '@/components/content/AppContent'
 
 const ClientOrdersPage = () => {
-  return <AppContent>Mis pedidos</AppContent>
+  return (
+    <AppContent>
+      <ClientOrders />
+    </AppContent>
+  )
 }
 
 export default ClientOrdersPage

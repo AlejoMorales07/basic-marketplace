@@ -1,14 +1,16 @@
 'use client'
 
+import { GlobalAppContext } from '@/context/GlobalContext'
 import { IRegisterFormValues } from '@/interfaces/auth.interface'
 import { registerService } from '@/services/auth.service'
 import { Button, Form, Input, message, Radio } from 'antd'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 const FormRegister = () => {
   const [form] = Form.useForm()
   const router = useRouter()
+  const { setLoading } = useContext(GlobalAppContext)
   const [userType, setUserType] = useState<'BUSINESS' | 'CLIENT'>('CLIENT')
 
   useEffect(() => {
@@ -17,11 +19,14 @@ const FormRegister = () => {
 
   const onSubmit = async (data: IRegisterFormValues) => {
     try {
+      setLoading(true)
       const result = await registerService(data)
       message.success(result.message)
       router.push('/auth/login')
     } catch (error) {
       message.error(error instanceof Error ? error.message : String(error))
+    } finally {
+      setLoading(false)
     }
   }
   return (

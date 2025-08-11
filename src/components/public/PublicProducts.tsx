@@ -1,18 +1,18 @@
 'use client'
 
+import { GlobalAppContext } from '@/context/GlobalContext'
 import { IProduct } from '@/interfaces/product.interface'
-import { getShops } from '@/services/shop.service'
-import { message, Spin, Typography } from 'antd'
-import { useParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
-import ShopList from '../shop/ShopList'
+import { createOrder } from '@/services/orders.service'
 import { getProducts } from '@/services/product.service'
+import { message, Typography } from 'antd'
+import { useParams } from 'next/navigation'
+import { useContext, useEffect, useState } from 'react'
 import ProductList from '../product/ProductList'
 
 const PublicProducts = () => {
   const { id } = useParams()
+  const { setLoading } = useContext(GlobalAppContext)
   const [products, setProducts] = useState<IProduct[]>([])
-  const [loading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {
     getData()
@@ -30,7 +30,15 @@ const PublicProducts = () => {
     }
   }
 
-  if (loading) return <Spin fullscreen />
+  const onBuy = async (values: any) => {
+    try {
+      const res = await createOrder(values.id)
+      message.success(res.message)
+    } catch (error) {
+      message.error(error instanceof Error ? error.message : String(error))
+    }
+  }
+
   return (
     <>
       <div className="shop-header">
@@ -38,7 +46,7 @@ const PublicProducts = () => {
           Tiendas
         </Typography.Title>
       </div>
-      <ProductList products={products} />
+      <ProductList products={products} onBuy={onBuy} />
     </>
   )
 }

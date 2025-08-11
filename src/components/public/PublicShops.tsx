@@ -1,14 +1,15 @@
 'use client'
 
+import { GlobalAppContext } from '@/context/GlobalContext'
 import { IShop } from '@/interfaces/shop.interface'
 import { getShops } from '@/services/shop.service'
-import { message, Spin, Typography } from 'antd'
-import { useEffect, useState } from 'react'
+import { message, Typography } from 'antd'
+import { useContext, useEffect, useState } from 'react'
 import ShopList from '../shop/ShopList'
 
 const PublicShops = () => {
   const [shops, setShops] = useState<IShop[]>([])
-  const [loading, setLoading] = useState<boolean>(false)
+  const { setLoading } = useContext(GlobalAppContext)
 
   useEffect(() => {
     getData()
@@ -28,7 +29,6 @@ const PublicShops = () => {
     }
   }
 
-  if (loading) return <Spin fullscreen />
   return (
     <>
       <div className="shop-header">

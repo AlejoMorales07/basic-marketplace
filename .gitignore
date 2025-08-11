@@ -45,5 +45,3 @@ next-env.d.ts
 .vscode/    
 /src/generated/prisma
 
-#docker
-docker-compose.yml

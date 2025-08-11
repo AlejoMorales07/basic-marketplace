@@ -1,16 +1,17 @@
 'use client'
 
+import { GlobalAppContext } from '@/context/GlobalContext'
 import { IShop } from '@/interfaces/shop.interface'
 import { createShop, deleteShop, getBusinessShops } from '@/services/shop.service'
-import { Form, message, Spin, Typography } from 'antd'
-import { useEffect, useState } from 'react'
+import { Form, message, Typography } from 'antd'
+import { useContext, useEffect, useState } from 'react'
 import ShopList from '../shop/ShopList'
 import ModalCreate from './ModalCreate'
 
 const BusinessShops = () => {
   const [form] = Form.useForm()
+  const { setLoading } = useContext(GlobalAppContext)
   const [shops, setShops] = useState<IShop[]>([])
-  const [loading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {
     getData()
@@ -49,8 +50,6 @@ const BusinessShops = () => {
       getData()
     }
   }
-
-  if (loading) return <Spin fullscreen />
 
   return (
     <>

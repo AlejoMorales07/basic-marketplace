@@ -1,14 +1,17 @@
 .shop-list,
-.product-list {
+.product-list,
+.order-list {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
   .shop-empty,
-  .product-empty {
+  .product-empty,
+  .order-empty {
     width: 100%;
   }
   .shop-card,
-  .product-card {
+  .product-card,
+  .order-card {
     margin-bottom: 16px;
     width: 250px;
   }
